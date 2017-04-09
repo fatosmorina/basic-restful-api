@@ -60,6 +60,19 @@ RSpec.describe 'Todos API', type: :request do
 
     end
 
+    context 'when the request is invalid' do
+      before {post '/todos', params: {title: ''}}
+
+      it 'should return status code 422' do
+        expect(response).to have_http_status(422)
+      end
+
+      it 'should return a failure message' do
+        expect(response.body).to match(/Created by cannot be blank/)
+      end
+
+    end
+
   end
 
 end
