@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Todos API', type: :request do
 
   let!(:todos) {create_list(:todo, 12)}
-  let(:todo_id) {todos.first.id}
+  let(:todo_id) { todos.first.id}
 
   describe 'GET/todos' do
     before { get '/todos'}
@@ -22,7 +22,7 @@ RSpec.describe 'Todos API', type: :request do
 
       it 'should return the todo' do
         expect(json).not_to be_empty
-        expect(json['id']).not_to eq(todo_id)
+        expect(json['id']).to eq(todo_id)
       end
 
       it 'returns status code 200' do
