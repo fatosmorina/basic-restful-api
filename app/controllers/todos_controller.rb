@@ -10,4 +10,7 @@ class TodosController < ApplicationController
     json_response(@todo, :created)
   end
 
+  def show
+    json_response(@todo)
+  end
 end
