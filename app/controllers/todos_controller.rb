@@ -18,4 +18,10 @@ class TodosController < ApplicationController
     @todo.update(todo_params)
     head :no_content
   end
+
+  def destroy
+    @todo.destroy
+    head :no_content
+  end
+
 end
