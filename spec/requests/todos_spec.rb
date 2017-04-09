@@ -50,8 +50,12 @@ RSpec.describe 'Todos API', type: :request do
     context 'when the request is valid' do
       before {post '/todos', params: valid_attributes }
 
-      it 'creates a todo' do
+      it 'should create a todo' do
         expect(json['title']).to eq('Develop a simple REST API')
+      end
+
+      it 'should return status code 201' do
+        expect(response).to have_http_status(201)
       end
 
     end
