@@ -31,7 +31,7 @@ RSpec.describe 'Todos API', type: :request do
     end
 
     context 'when the todo item does not exist' do
-      let(:todo_id) { 100}
+      let(:todo_id) { -31}
 
       it 'should return status code 404' do
         expect(response).to have_http_status(404)
@@ -68,7 +68,7 @@ RSpec.describe 'Todos API', type: :request do
       end
 
       it 'should return a failure message' do
-        expect(response.body).to match(/Created by cannot be blank/)
+        expect(response.body).to match(/Validation failed: Title can't be blank/)
       end
     end
   end
