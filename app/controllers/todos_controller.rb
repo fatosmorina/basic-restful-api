@@ -1,5 +1,4 @@
 class TodosController < ApplicationController
-
   before_action :set_todo, only: [:show, :update, :destroy]
 
   def index
@@ -7,13 +6,13 @@ class TodosController < ApplicationController
     json_response(@todos)
   end
 
+  def show
+    json_response(@todo)
+  end
+
   def create
     @todo = Todo.create!(todo_params)
     json_response(@todo, :created)
-  end
-
-  def show
-    json_response(@todo)
   end
 
   def update
@@ -35,5 +34,4 @@ class TodosController < ApplicationController
   def set_todo
     @todo = Todo.find(params[:id])
   end
-
 end

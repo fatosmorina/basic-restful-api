@@ -31,11 +31,7 @@ RSpec.describe 'Todos API', type: :request do
     end
 
     context 'when the todo item does not exist' do
-      let(:todo_id) { -31}
-
-      it 'should return status code 404' do
-        expect(response).to have_http_status(404)
-      end
+      let(:todo_id) { 903 }
 
       it 'should return a not found message' do
         expect(response.body).to match(/Couldn't find Todo/)
@@ -90,21 +86,11 @@ RSpec.describe 'Todos API', type: :request do
   end
 
   describe 'DELETE /todos/:id' do
-
-    context 'when a todo item exists' do
       before {delete "/todos/#{todo_id}"}
 
       it 'should return status code 204' do
         expect(response).to have_http_status(204)
       end
-    end
-
-    context 'when a todo item does not exist' do
-      it 'should not delete a todo item that is not found' do
-        expect(resonse).to have_http_status(422)
-      end
-    end
-
   end
 
 end
