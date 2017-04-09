@@ -1,5 +1,7 @@
 class TodosController < ApplicationController
 
+  before_action :set_todo, only: [:show, :update, :destroy]
+
   def index
     @todos = Todo.all
     json_response(@todos)
