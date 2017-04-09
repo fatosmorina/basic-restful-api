@@ -44,4 +44,18 @@ RSpec.describe 'Todos API', type: :request do
 
   end
 
+  describe 'POST /todos' do
+    let(:valid_attributes) {{title: 'Develop a simple REST API', created_by: '1'}}
+
+    context 'when the request is valid' do
+      before {post '/todos', params: valid_attributes }
+
+      it 'creates a todo' do
+        expect(json['title']).to eq('Develop a simple REST API')
+      end
+
+    end
+
+  end
+
 end
