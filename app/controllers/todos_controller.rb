@@ -13,4 +13,9 @@ class TodosController < ApplicationController
   def show
     json_response(@todo)
   end
+
+  def update
+    @todo.update(todo_params)
+    head :no_content
+  end
 end
