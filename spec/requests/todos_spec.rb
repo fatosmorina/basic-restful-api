@@ -18,7 +18,7 @@ RSpec.describe 'Todos API', type: :request do
   describe 'GET /todos/:id' do
     before {get "/todos/#{todo_id}"}
 
-    context 'when the record exists' do
+    context 'when the todo item exists' do
 
       it 'should return the todo' do
         expect(json).not_to be_empty
@@ -28,8 +28,20 @@ RSpec.describe 'Todos API', type: :request do
       it 'returns status code 200' do
         expect(response).to have_http_status(200)
       end
-
     end
+
+    context 'when the todo item does not exist' do
+      let(:todo_id) { 39}
+
+      it 'should return status code 404' do
+        expect(response).to have_http_status(404)
+      end
+
+      it 'should return a not found message' do
+        expect(response.body).to match(/Could not find this todo item. Please try again./)
+      end
+    end
+
   end
 
 end
