@@ -70,9 +70,20 @@ RSpec.describe 'Todos API', type: :request do
       it 'should return a failure message' do
         expect(response.body).to match(/Created by cannot be blank/)
       end
+    end
+  end
+
+  describe 'PUT /todos/:id' do
+    let(:valid_attributes) {{ title: 'Write a technical article in FatosMorina.com'}}
+
+    context 'when the record exists' do
+      before {put "/todos/#{todo_id}", params: valid_attributes}
+
+      it 'should update the record' do
+        expect(response.body).to be_empty
+      end
 
     end
-
   end
 
 end
