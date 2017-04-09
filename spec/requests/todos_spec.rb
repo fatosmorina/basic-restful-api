@@ -38,7 +38,7 @@ RSpec.describe 'Todos API', type: :request do
       end
 
       it 'should return a not found message' do
-        expect(response.body).to match(/Could not find this todo item. Please try again./)
+        expect(response.body).to match(/Couldn't find Todo/)
       end
     end
 
