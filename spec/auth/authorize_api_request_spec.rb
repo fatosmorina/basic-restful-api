@@ -5,6 +5,7 @@ RSpec.describe AuthorizeApiRequest do
   let(:user) { create(:user) }
   let(:header) {{'Authorization' => token_generator(user.id) }}
   subject(:invalid_request_obj) {described_class.new({})}
+  subject(:request_obj) { described_class.new(header) }
 
   describe '#call' do
     context 'when valid request' do
