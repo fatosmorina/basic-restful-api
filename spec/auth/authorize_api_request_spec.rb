@@ -21,7 +21,17 @@ RSpec.describe AuthorizeApiRequest do
           raise_error(ExceptionHandler::MissingToken, 'Missing token')
         end
       end
+
+      context 'when invalid token' do
+        subject(:invalid_request_obj) do
+          described_class.new('Authorization' => token_generator(5))
+        end
+
+        it 'should raise an InvalidToken error' do
+          expect { invalid_request_obj.call }.to
+          raise_error(ExceptionHandler::InvalidToken, /Invalid token/)
+        end
+     end
     end
   end
-
 end
