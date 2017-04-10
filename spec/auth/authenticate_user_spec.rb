@@ -9,7 +9,7 @@ RSpec.describe AuthenticateUser do
 
   subject(:invalid_auth_object) { described_class.new('user','user')}
 
-  desribe '#call' do
+  describe '#call' do
     context 'when valid credentials' do
       it 'should return an auth token' do
         token = valid_auth_object.call
