@@ -9,7 +9,6 @@ RSpec.describe AuthenticateUser do
   subject(:invalid_auth_object) { described_class.new('user','user')}
 
   describe '#call' do
-
     context 'when valid credentials' do
       it 'should return an auth token' do
         token = valid_auth_object.call
@@ -19,10 +18,11 @@ RSpec.describe AuthenticateUser do
 
     context 'when invalid credentials' do
       it 'should raise an authentication error' do
-        expect { invalid_auth_object.call }.to
-        raise_error(ExceptionHandler::AuthenticationError,
-        /Invalid credentials/
-        )
+        expect { invalid_auth_object.call }
+            .to raise_error(
+                    ExceptionHandler::AuthenticationError,
+                    /Invalid credentials/
+                )
       end
     end
 

@@ -17,9 +17,9 @@ RSpec.describe AuthorizeApiRequest do
 
     context 'when invalid request' do
       context 'when missing token' do
-        it 'should raise a MissingToken error' do
-          expect (invalid_request_obj.call).to
-          raise_error(ExceptionHandler::MissingToken, 'Missing token')
+        it 'raises a MissingToken error' do
+          expect { invalid_request_obj.call }
+              .to raise_error(ExceptionHandler::MissingToken, 'Missing token')
         end
       end
 
@@ -28,9 +28,9 @@ RSpec.describe AuthorizeApiRequest do
           described_class.new('Authorization' => token_generator(5))
         end
 
-        it 'should raise an InvalidToken error' do
-          expect { invalid_request_obj.call }.to
-          raise_error(ExceptionHandler::InvalidToken, /Invalid token/)
+        it 'raises an InvalidToken error' do
+          expect { invalid_request_obj.call }
+              .to raise_error(ExceptionHandler::InvalidToken, /Invalid token/)
         end
       end
 
@@ -39,9 +39,11 @@ RSpec.describe AuthorizeApiRequest do
         subject(:request_obj) { described_class.new(header) }
 
         it 'should raise ExceptionHandler::ExpiredSignature error' do
-          expect { request_obj.call }.to
-          raise_error(ExceptionHandler::InvalidToken, /Signature has expired/
-          )
+          expect { request_obj.call }
+              .to raise_error(
+                      ExceptionHandler::InvalidToken,
+                      /Signature has expired/
+                  )
         end
       end
     end
