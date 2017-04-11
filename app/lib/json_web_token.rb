@@ -17,9 +17,9 @@ HMAC_SECRET = Rails.application.secrets.secret_key_base
     HashWithIndifferentAccess.new body
 
     # rescue from expiry exception
-  rescue JWT::ExpiredSignature, JWT::VerificationError => execption
+  rescue JWT::ExpiredSignature, JWT::VerificationError => exception
     # raise custom error that should be handled by custom handler
-    raise ExceptionHandler::ExpiredSignature, execption.message
+    raise ExceptionHandler::ExpiredSignature, exception.message
   end
 
 end
