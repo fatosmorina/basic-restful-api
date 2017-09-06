@@ -42,7 +42,7 @@ RSpec.describe 'Todos API', type: :request do
   end
 
   describe 'POST /todos' do
-    let(:valid_attributes) {  title: 'Develop a simple REST API', created_by: user.id.to_s  }.to_json
+    let(:valid_attributes) { { title: 'Develop a simple REST API', created_by: user.id.to_s  } }.to_json
 
     context 'when request is valid' do
       before {post '/todos', params: valid_attributes, headers: headers }
@@ -54,7 +54,6 @@ RSpec.describe 'Todos API', type: :request do
       it 'should return status code 201' do
         expect(response).to have_http_status(201)
       end
-
     end
 
     context 'when the request is invalid' do
@@ -76,7 +75,7 @@ RSpec.describe 'Todos API', type: :request do
     let(:valid_attributes) { { title: 'Write a technical article in FatosMorina.com' }.to_json }
 
     context 'when the record exists' do
-      before { put "/todos/#{todo_id}", params: valid_attributes, headers: headers }}
+      before { put "/todos/#{todo_id}", params: valid_attributes, headers: headers }
 
       it 'should update the record' do
         expect(response.body).to be_empty
@@ -89,11 +88,10 @@ RSpec.describe 'Todos API', type: :request do
   end
 
   describe 'DELETE /todos/:id' do
-      before {delete "/todos/#{todo_id}", params: {}, headers: headers}
+    before { delete "/todos/#{todo_id}" }
 
-      it 'should return status code 204' do
-        expect(response).to have_http_status(204)
-      end
+    it 'returns status code 204' do
+      expect(response).to have_http_status(204)
+    end
   end
-
 end

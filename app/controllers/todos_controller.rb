@@ -25,7 +25,7 @@ class TodosController < ApplicationController
     head :no_content
   end
 
-  private
+private
 
   def todo_params
     params.permit(:title)

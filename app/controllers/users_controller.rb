@@ -9,7 +9,6 @@ class UsersController < ApplicationController
     json_response(response, :created)
   end
 
-
   def user_params
     params.permit(:name, :email, :password, :password_confirmation)
   end

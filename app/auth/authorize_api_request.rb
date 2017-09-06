@@ -6,11 +6,11 @@ class AuthorizeApiRequest
 
   def call
     {
-        user: user
+      user: user
     }
   end
 
-  private
+private
 
   attr_reader :headers
 
@@ -19,11 +19,10 @@ class AuthorizeApiRequest
 
   rescue ActiveRecord::RecordNotFound => exception
     raise(
-        ExceptionHandler::InvalidToken,
-        ("#{Message.invalid_token} #{exception.message}")
-      )
+      ExceptionHandler::InvalidToken,
+      ("#{Message.invalid_token} #{exception.message}")
+    )
   end
-
 
   def decoded_auth_token
     @decoded_auth_token ||= JsonWebToken.decode(http_auth_header)
